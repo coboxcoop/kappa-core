@@ -64,6 +64,7 @@ module.exports = class Kappa extends EventEmitter {
     // wait a tick
     process.nextTick(() => {
       let pending = names.length
+      if (!pending) return cb()
       for (const name of names) {
         const flow = this.flows[name]
         if (!flow) return cb(new Error('Unknown flow: ' + name))
